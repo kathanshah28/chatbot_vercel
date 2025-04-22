@@ -87,6 +87,20 @@ app = Flask(__name__)
 def home():
     return render_template_string(template)
 
+@app.route("/api/doraemon", methods=["POST"])
+def doraemon_api():
+    data = request.get_json()
+    question = data.get("question", "")
+    if not question:
+        return jsonify({"error": "No question provided."}), 400
+
+    try:
+        response = chain.invoke({"question": question})
+        return jsonify({"answer": response})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route('/about')
 def about():
     return 'About'
