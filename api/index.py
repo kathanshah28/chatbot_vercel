@@ -102,4 +102,4 @@ def doraemon_api():
 
 @app.route('/about')
 def about():
-    return 'About'
+    return 'about page'
