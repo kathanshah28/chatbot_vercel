@@ -35,8 +35,8 @@ template = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doraemon Chatbot</title>
     <style>
-        body { font-family: 'Comic Sans MS', cursive; background: url("https://i.pinimg.com/originals/c3/0c/e8/c30ce876948646203d29f46dffd040d8.jpg") no-repeat center center fixed; text-align: center; padding: 2rem; }
-        .chat-box { max-width: 800px; margin: 0 auto; background: white; padding: 1rem; border-radius: 1rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        body { font-family: 'Comic Sans MS', cursive; background: #D0E7FF; text-align: center; padding: 2rem; }
+        .chat-box { max-width: 800px; margin: 0 auto; background: url("https://i.pinimg.com/originals/c3/0c/e8/c30ce876948646203d29f46dffd040d8.jpg") no-repeat center center fixed; padding: 1rem; border-radius: 1rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .messages { height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 1rem; border-radius: 0.5rem; text-align: left; background: #F0F8FF; }
         .msg { margin: 0.5rem 0; }
         .msg.user { text-align: right; }
