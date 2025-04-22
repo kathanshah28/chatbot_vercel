@@ -35,22 +35,87 @@ template = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doraemon Chatbot</title>
     <style>
-        body { font-family: 'Comic Sans MS', cursive; background: #D0E7FF; text-align: center; padding: 2rem; }
-        .chat-box { max-width: 800px; margin: 0 auto; background: white; padding: 1rem; border-radius: 1rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .messages { height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 1rem; border-radius: 0.5rem; text-align: left; background: url("https://i.pinimg.com/originals/c3/0c/e8/c30ce876948646203d29f46dffd040d8.jpg"); background-size: cover;}
-        .msg { margin: 0.5rem 0; }
-        .msg.user { text-align: right; }
-        .msg.doraemon { color: blue; }
-        input[type="text"] { width: 80%; padding: 0.5rem; }
-        button { padding: 0.5rem 1rem; background: #3399FF; color: white; border: none; border-radius: 0.3rem; cursor: pointer; }
+        body { 
+            font-family: 'Comic Sans MS', cursive; 
+            background: url("https://i.pinimg.com/originals/c3/0c/e8/c30ce876948646203d29f46dffd040d8.jpg") no-repeat center fixed; 
+            background-size: cover; 
+            margin: 0; 
+            padding: 0; 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* Lighter overlay for better visibility */
+            z-index: -1;
+        }
+        .chat-box { 
+            max-width: 600px; 
+            width: 90%; 
+            background: rgba(255, 255, 255, 0.75); /* Slightly more transparent white background */
+            padding: 1.5rem; 
+            border-radius: 1rem; 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+        }
+        .messages { 
+            height: 300px; 
+            overflow-y: auto; 
+            border: 1px solid #ccc; 
+            padding: 1rem; 
+            border-radius: 0.5rem; 
+            background: rgba(240, 248, 255, 0.8); /* Light blue background for messages */
+        }
+        .msg { 
+            margin: 0.5rem 0; 
+        }
+        .msg.user { 
+            text-align: right; 
+            color: #333; 
+        }
+        .msg.doraemon { 
+            color: #007BFF; 
+        }
+        input[type="text"] { 
+            width: calc(100% - 100px); 
+            padding: 0.5rem; 
+            border: 1px solid #ccc; 
+            border-radius: 0.3rem; 
+            margin-right: 0.5rem; 
+        }
+        button { 
+            padding: 0.5rem 1rem; 
+            background: #007BFF; 
+            color: white; 
+            border: none; 
+            border-radius: 0.3rem; 
+            cursor: pointer; 
+            transition: background 0.3s ease; 
+        }
+        button:hover { 
+            background: #0056b3; 
+        }
+        h1 { 
+            color: white; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+            margin-bottom: 1rem; 
+        }
     </style>
 </head>
 <body>
-    <h1>🤖 Doraemon Chatbot</h1>
+    <div class="overlay"></div>
     <div class="chat-box">
+        <h1>🤖 Doraemon Chatbot</h1>
         <div class="messages" id="messages"></div>
-        <input type="text" id="userInput" placeholder="Ask Doraemon something..." />
-        <button onclick="sendMessage()">Send</button>
+        <div style="margin-top: 1rem;">
+            <input type="text" id="userInput" placeholder="Ask Doraemon something..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
     </div>
 
     <script>
@@ -77,6 +142,12 @@ template = """
                 messagesDiv.scrollTop = messagesDiv.scrollHeight;
             });
         }
+        // Add event listener for the Enter key
+        userInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
     </script>
 </body>
 </html>
